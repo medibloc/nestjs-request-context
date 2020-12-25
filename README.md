@@ -17,7 +17,7 @@ yarn add '@medibloc/nestjs-request-context'
 
 There are several ways to enable the request context.
 
-### Using Module
+### Using middleware in the module
 
 Extend `RequestContext` to include any data you want.
 ```ts
@@ -92,7 +92,7 @@ app.use(requestContextMiddleware(MyRequestContext));
 
 await app.listen(3000);
 ```
-Later steps are the same as in [the section above](#using-module).
+Later steps are the same as in [the section above](#using-middleware-in-the-module).
 
 ### For GraphQL Subscriptions
 
