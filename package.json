@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-request-context",
+  "name": "@medibloc/nestjs-request-context",
   "version": "1.0.0",
   "description": "NestJS Request Context using AsyncLocalStorage",
   "main": "dist/index.js",
