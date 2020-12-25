@@ -1,0 +1,48 @@
+{
+  "name": "nestjs-request-context",
+  "version": "1.0.0",
+  "description": "NestJS Request Context using AsyncLocalStorage",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medibloc/nestjs-request-context.git"
+  },
+  "author": "Youngjoon Lee <yjlee@medibloc.org>",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint \"{src}/**/*.ts\" --fix"
+  },
+  "files": [
+    "dist/*.{ts,js,map}"
+  ],
+  "engines": {
+    "node": ">=14.15.2"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^7.5.5",
+    "@nestjs/core": "^7.5.5",
+    "@nestjs/platform-express": "^7.5.5",
+    "@nestjs/testing": "^7.5.5",
+    "@types/express": "^4.17.9",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.16",
+    "@types/supertest": "^2.0.10",
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3",
+    "supertest": "^6.0.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^7.5.5",
+    "@nestjs/platform-express": "^7.5.5",
+    "express": "^4.17.1"
+  }
+}
