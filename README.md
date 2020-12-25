@@ -15,6 +15,10 @@ yarn add '@medibloc/nestjs-request-context'
 
 ## Usage
 
+There are several ways to enable the request context.
+
+### Using Module
+
 Extend `RequestContext` to include any data you want.
 ```ts
 import { RequestContext } from '@medibloc/nestjs-request-context';
@@ -25,6 +29,7 @@ export class MyRequestContext extends RequestContext {
 ```
 
 Import `RequestContextModule` to your `AppModule` with specifying the context class that you defined above.
+It automatically registers a middleware that initialize a context for each request (for all route path `*`).
 
 ```ts
 import { RequestContextModule } from '@medibloc/nestjs-request-context';
@@ -40,8 +45,6 @@ import { MyRequestContext } from './my-context.model';
 })
 export class AppModule {}
 ```
-
-It automatically registers a middleware that initialize a context for each request.
 
 If `isGlobal` is `true`, you will not need to import `RequestContextModule` in other modules once it's been loaded in the root module.
 
@@ -73,11 +76,33 @@ export class MyService {
 }
 ```
 
+### Using functional middleware
+
+If you prefer to use the functional middleware rather than import the module `RequestContextModule`,
+you can use the `requestContextMiddleware` function by passing the context class that you want.
+In this case, you don't need to import the `RequestContextModule` to the `AppModule`.
+
+```ts
+import { requestContextMiddleware } from '@medibloc/nestjs-request-context';
+import { MyRequestContext } from './my-context.model';
+
+const app = await NestFactory(AppModule);
+...
+app.use(requestContextMiddleware(MyRequestContext));
+
+await app.listen(3000);
+```
+Later steps are the same as in [the section above](#using-module).
+
+### For GraphQL Subscriptions
+
 If you use GraphQL Subscriptions, the request context middleware will not be executed automatically,
 because NestJS middlewares are not for Websocket connections.
 
 If you want to initialize the request context for each Websocket connection,
 please set the `onConnect` option like below.
+In this case, you don't need to import the `RequestContextModule` to the `AppModule`
+or use the `requestContextMiddleware` function.
 
 ```ts
 @Module({

@@ -12,11 +12,25 @@ export class RequestContextMiddleware<T extends RequestContext> implements NestM
   ) {}
 
   use(req: Request, res: Response, next: NextFunction): void {
-    RequestContext.start(this.options.contextClass);
-    next();
+    middleware(this.options.contextClass, req, res, next);
   }
 
   onModuleInit(): void {
     // do nothing
   }
+}
+
+export function requestContextMiddleware<T extends RequestContext>(
+  contextClass: (new () => T),
+): (req: Request, res: Response, next: NextFunction) => void {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    middleware(contextClass, req, res, next);
+  }
+}
+
+function middleware<T extends RequestContext>(
+  contextClass: (new () => T), req: Request, res: Response, next: NextFunction,
+): void {
+  RequestContext.start(contextClass);
+  next();
 }
