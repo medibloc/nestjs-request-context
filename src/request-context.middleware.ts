@@ -23,7 +23,7 @@ export class RequestContextMiddleware<T extends RequestContext> implements NestM
 export function requestContextMiddleware<T extends RequestContext>(
   contextClass: (new () => T),
 ): (req: Request, res: Response, next: NextFunction) => void {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return function RequestContextMiddleware(req: Request, res: Response, next: NextFunction): void {
     middleware(contextClass, req, res, next);
   }
 }
