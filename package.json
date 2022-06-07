@@ -1,6 +1,6 @@
 {
   "name": "@medibloc/nestjs-request-context",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NestJS Request Context using AsyncLocalStorage",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -41,8 +41,8 @@
     "typescript": "^4.1.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^7.5.5",
-    "@nestjs/platform-express": "^7.5.5",
-    "express": "^4.17.1"
+    "@nestjs/common": ">=7.5.5",
+    "@nestjs/platform-express": ">=7.5.5",
+    "express": ">=4.17.1"
   }
 }
